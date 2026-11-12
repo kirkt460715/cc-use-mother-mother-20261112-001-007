@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "sites": [
+    {
+      "id": "s1",
+      "region": "east",
+      "rural": false,
+      "users": 100,
+      "minimum_operating": {
+        "care": 1
+      }
+    },
+    {
+      "id": "s2",
+      "region": "west",
+      "rural": true,
+      "users": 50,
+      "minimum_operating": {
+        "care": 0
+      }
+    }
+  ],
+  "classes": [
+    {
+      "id": "care",
+      "design_life_days": 3650,
+      "inspection_valid_days": 90,
+      "criticality": 8,
+      "checks": [
+        "electrical",
+        "mechanical"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "a1",
+      "serial": "SN-a1",
+      "site": "s1",
+      "class": "care",
+      "parent": null,
+      "commissioned": "2018-01-01",
+      "retired": null,
+      "utilization_pct": 80,
+      "redundancy": 1,
+      "outage_cost_daily": "10.00"
+    },
+    {
+      "id": "a2",
+      "serial": "SN-a2",
+      "site": "s1",
+      "class": "care",
+      "parent": null,
+      "commissioned": "2018-01-01",
+      "retired": null,
+      "utilization_pct": 80,
+      "redundancy": 1,
+      "outage_cost_daily": "10.00"
+    },
+    {
+      "id": "a3",
+      "serial": "SN-a3",
+      "site": "s2",
+      "class": "care",
+      "parent": null,
+      "commissioned": "2018-01-01",
+      "retired": null,
+      "utilization_pct": 80,
+      "redundancy": 1,
+      "outage_cost_daily": "10.00"
+    },
+    {
+      "id": "a4",
+      "serial": "SN-a4",
+      "site": "s2",
+      "class": "care",
+      "parent": null,
+      "commissioned": "2018-01-01",
+      "retired": null,
+      "utilization_pct": 80,
+      "redundancy": 1,
+      "outage_cost_daily": "10.00"
+    }
+  ],
+  "inspections": [
+    {
+      "id": "i-a1",
+      "asset": "a1",
+      "performed": "2026-11-01",
+      "recorded": "2026-11-02",
+      "inspector": "local-reviewer",
+      "checks": {
+        "electrical": 4,
+        "mechanical": 4
+      }
+    },
+    {
+      "id": "i-a2",
+      "asset": "a2",
+      "performed": "2026-11-01",
+      "recorded": "2026-11-02",
+      "inspector": "local-reviewer",
+      "checks": {
+        "electrical": 1,
+        "mechanical": 1
+      }
+    },
+    {
+      "id": "i-a3",
+      "asset": "a3",
+      "performed": "2026-11-01",
+      "recorded": "2026-11-02",
+      "inspector": "local-reviewer",
+      "checks": {
+        "electrical": 3,
+        "mechanical": 3
+      }
+    }
+  ],
+  "maintenance": [],
+  "proposals": [
+    {
+      "id": "replace-a1",
+      "asset": "a1",
+      "action": "replace",
+      "period": "p1",
+      "cost": "800.00",
+      "crew_days": 2,
+      "outage_days": 3,
+      "reduction": {
+        "numerator": 1,
+        "denominator": 1
+      },
+      "requires": [],
+      "excludes": [],
+      "mandatory": false
+    },
+    {
+      "id": "retrofit-a1",
+      "asset": "a1",
+      "action": "retrofit",
+      "period": "p1",
+      "cost": "400.00",
+      "crew_days": 2,
+      "outage_days": 1,
+      "reduction": {
+        "numerator": 1,
+        "denominator": 2
+      },
+      "requires": [],
+      "excludes": [],
+      "mandatory": false
+    },
+    {
+      "id": "replace-a3",
+      "asset": "a3",
+      "action": "replace",
+      "period": "p1",
+      "cost": "600.00",
+      "crew_days": 2,
+      "outage_days": 2,
+      "reduction": {
+        "numerator": 1,
+        "denominator": 1
+      },
+      "requires": [],
+      "excludes": [],
+      "mandatory": false
+    },
+    {
+      "id": "inspect-a4",
+      "asset": "a4",
+      "action": "inspect",
+      "period": "p2",
+      "cost": "100.00",
+      "crew_days": 2,
+      "outage_days": 0,
+      "reduction": {
+        "numerator": 0,
+        "denominator": 1
+      },
+      "requires": [],
+      "excludes": [],
+      "mandatory": false
+    }
+  ],
+  "periods": [
+    {
+      "id": "p1",
+      "start": "2026-12-01",
+      "end": "2026-12-31",
+      "budget": "1000.00",
+      "crew_days": 10
+    },
+    {
+      "id": "p2",
+      "start": "2027-01-01",
+      "end": "2027-01-31",
+      "budget": "500.00",
+      "crew_days": 8
+    }
+  ],
+  "policy": {
+    "version": 1,
+    "weights": {
+      "age": 20,
+      "condition": 40,
+      "utilization": 15,
+      "criticality": 15,
+      "redundancy": 10
+    },
+    "missing_condition": {
+      "low": 0,
+      "central": 50,
+      "high": 100
+    },
+    "thresholds": {
+      "watch": 30,
+      "urgent": 60,
+      "critical": 80
+    },
+    "minimum_evidence_pct": 80
+  }
+}
